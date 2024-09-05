@@ -23,6 +23,7 @@ services:
       db-password: 123!@#OP
     depends_on:
       - db
+      - kafka1
     restart: always
   web_user:
     image: jehad950/user_rest_api:v1.0
@@ -36,6 +37,7 @@ services:
       db-password: 123!@#OP
     depends_on:
       - db
+      - kafka1
     restart: always
 
   zoo1:
