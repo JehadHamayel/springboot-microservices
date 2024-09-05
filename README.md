@@ -6,6 +6,7 @@
 - [Prerequisites](#prerequisites)
 - [Installation](#installation)
 - [Running the Application](#running-the-application)
+- [Create the images of the Application using Docker](#Create-the-images-of-the-Application-using-Docker)
 
 ## Overview
 This project demonstrates a **Spring Boot** microservices architecture using **Apache Kafka** for messaging, **gRPC** for efficient inter-service communication, and **Swagger** for API documentation. It includes the following key features:
@@ -20,12 +21,14 @@ This project demonstrates a **Spring Boot** microservices architecture using **A
 - **gRPC** - High-performance RPC framework
 - **Swagger** - API documentation and UI
 - **PostgreSQL** - Database for persistence
+- **Docker** - Containerization for running services
 
 ## Prerequisites
 - **Java 17** 
 - **Apache Kafka** installed and running
 - **PostgreSQL** installed and running
 - **Maven** for building the project
+- **Docker** for running containers
 
 ## Installation
 ### 1. Clone the repository:
@@ -70,6 +73,12 @@ Follow these steps to get Kafka running on Windows:
   ```bash
   mvn clean install
   ```
-- Run each model of the Spring Boot applications alone as separate applications:
+- Run each model of the Spring Boot applications alone as separate applications
+
+## Create the images of the Application using Docker
+- Using this commad you will pull and create the images for the application:
+  ```bash
+   docker compose -f .\docker-compose.yaml up -d
+  ```
 ---
 
