@@ -2,8 +2,6 @@ package org.ms.user.service.impl;
 
 
 import io.grpc.stub.StreamObserver;
-import lombok.NoArgsConstructor;
-import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import net.devh.boot.grpc.server.service.GrpcService;
 import org.ms.grpc_prop.prop.UserRequest;
@@ -11,9 +9,6 @@ import org.ms.grpc_prop.prop.UserResponse;
 import org.ms.grpc_prop.prop.UserServiceGrpc;
 import org.ms.user.UsersApplication;
 import org.ms.user.model.entity.UserEntity;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.context.ApplicationContext;
-import org.springframework.stereotype.Component;
 import org.ms.user.service.UserService;
 
 @Slf4j

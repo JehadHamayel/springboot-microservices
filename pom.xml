@@ -9,10 +9,11 @@
         <relativePath/> <!-- lookup parent from repository -->
     </parent>
     <groupId>org.ms</groupId>
-    <artifactId>gRPC</artifactId>
+    <artifactId>springboot-microservices</artifactId>
     <version>0.0.1-SNAPSHOT</version>
-    <name>gRPC</name>
-    <description>gRPC</description>
+    <packaging>pom</packaging>
+    <name>springboot-microservices</name>
+    <description>springboot-microservices</description>
     <url/>
     <licenses>
         <license/>

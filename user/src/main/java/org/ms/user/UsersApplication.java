@@ -2,7 +2,6 @@ package org.ms.user;
 
 import io.grpc.Server;
 import io.grpc.ServerBuilder;
-import org.ms.user.service.UserService;
 import org.ms.user.service.impl.UserServiceGRPC;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
