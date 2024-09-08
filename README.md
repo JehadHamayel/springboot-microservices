@@ -55,14 +55,16 @@ Follow these steps to get Kafka running on Windows:
    .\bin\windows\zookeeper-server-start.bat .\config\zookeeper.properties
    ```
 3. **Start Kafka Server**:
+   ```bash
    bin/kafka-server-start.sh config/server.properties
-5. **Set Up Port Forwarding**:
+   ```
+4. **Set Up Port Forwarding**:
    Kafka on Windows needs port forwarding to communicate with WSL2. Run the following command in an elevated command prompt (Run as Administrator):
    ```bash
    netsh interface portproxy add v4tov4 listenport=9092 listenaddress=0.0.0.0 connectport=9092 connectaddress=<IP OF YOUR WSL2>
    ```
 
-6. **Find Your WSL2 IP Address**:
+5. **Find Your WSL2 IP Address**:
    To get your WSL2 IP address, run:
    ```bash
    wsl hostname -I
@@ -70,7 +72,8 @@ Follow these steps to get Kafka running on Windows:
 
 ## Running the Application
 - Make sure **Kafka** and **PostgreSQL** are running.
-- Build the project with Maven for each model alone:
+- We need at each pom.xml file add it as Maven project
+- Build the project with Maven for each model alone (the first model is proto):
   ```bash
   mvn clean install
   ```
