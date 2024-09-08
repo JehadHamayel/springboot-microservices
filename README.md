@@ -73,7 +73,7 @@ Follow these steps to get Kafka running on Windows:
 ## Running the Application
 - Make sure **Kafka** and **PostgreSQL** are running.
 - We need at each pom.xml file add it as Maven project
-- Build the project with Maven for each model alone (the first model is proto):
+- Build the project with Maven:
   ```bash
   mvn clean install
   ```
@@ -85,7 +85,6 @@ Follow these steps to get Kafka running on Windows:
    docker compose -f .\docker-compose.yaml up -d
   ```
 ## The images of the project on my docker hub
-- [Post Image](https://hub.docker.com/r/jehad950/post_rest_api)
-- [User Image](https://hub.docker.com/r/jehad950/user_rest_api)
+- [Project Image](https://hub.docker.com/r/jehad950/post_user_rest_api)
 ---
 

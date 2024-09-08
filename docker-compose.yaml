@@ -11,25 +11,12 @@ services:
     volumes:
       - C:\user_post_DB:/var/lib/postgresql/data
     restart: always
-  web_post:
-    image: jehad950/post_rest_api:v1.0
-    build: post
-    container_name: post_rest_api_container
+  web:
+    image: jehad950/post_user_rest_api:v1.0
+    build: .
+    container_name: post_user_rest_api_container
     ports:
       - 8080:8080
-    environment:
-      db-url: jdbc:postgresql://db:5432/user_post_DB
-      db-user: postgres
-      db-password: 123!@#OP
-    depends_on:
-      - db
-      - kafka1
-    restart: always
-  web_user:
-    image: jehad950/user_rest_api:v1.0
-    build: user
-    container_name: user_rest_api_container
-    ports:
       - 8090:8090
     environment:
       db-url: jdbc:postgresql://db:5432/user_post_DB
@@ -80,11 +67,8 @@ services:
 #  docker-compose up
 #  docker-compose down
 
-#  docker tag jehad950/post_rest_api:v1.0 jehad950/post_rest_api:v1.0
-#  docker push jehad950/post_rest_api:v1.0
-
-#  docker tag jehad950/user_rest_api:v1.0 jehad950/user_rest_api:v1.0
-#  docker push jehad950/user_rest_api:v1.0
+#  docker tag jehad950/post_user_rest_api:v1.0 jehad950/post_user_rest_api:v1.0
+#  docker push jehad950/post_user_rest_api:v1.0
 
 ###Push All Images from Docker Compose (docker-compose.yaml)
 #  docker-compose push
@@ -94,7 +78,6 @@ services:
 #  docker-compose ps
 #  docker-compose logs
 #  docker-compose logs -f
-#  docker search jehad950/post_rest_api
-#  docker search jehad950/user_rest_api
+#  docker search jehad950/post_user_rest_api
 
 #https://github:com/conduktor/kafka-stack-docker-compose/tree/master:
