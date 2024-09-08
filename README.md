@@ -72,6 +72,10 @@ Follow these steps to get Kafka running on Windows:
 
 ## Running the Application
 - Make sure **Kafka** and **PostgreSQL** are running.
+- Make sure that the classifier in the pom.xml file in proto model is correct 
+   ```bash
+   <os.detected.classifier>choose your os here</os.detected.classifier>
+   ```
 - We need at each pom.xml file add it as Maven project
 - Build the project with Maven:
   ```bash
