@@ -1,11 +1,6 @@
 package org.ms.post.service.impl;
 
-import io.grpc.ManagedChannel;
-import io.grpc.ManagedChannelBuilder;
 import lombok.RequiredArgsConstructor;
-import org.ms.grpc_prop.prop.UserRequest;
-import org.ms.grpc_prop.prop.UserResponse;
-import org.ms.grpc_prop.prop.UserServiceGrpc;
 import org.ms.post.model.entity.PostEntity;
 import org.ms.post.repository.PostRepository;
 import org.ms.post.service.PostService;
