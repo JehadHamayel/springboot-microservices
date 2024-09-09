@@ -34,7 +34,7 @@ This project demonstrates a **Spring Boot** microservices architecture using **A
 ## Installation
 ### 1. Clone the repository:
 ```bash
-git clone https://github.com/your-username/your-repo.git
+git clone https://github.com/JehadHamayel/springboot-microservices
 cd spring-boot-microservices
 ```
 
@@ -91,4 +91,3 @@ Follow these steps to get Kafka running on Windows:
 ## The images of the project on my docker hub
 - [Project Image](https://hub.docker.com/r/jehad950/post_user_rest_api)
 ---
-
