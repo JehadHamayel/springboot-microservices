@@ -48,7 +48,7 @@
             <groupId>org.ms</groupId>
             <artifactId>proto</artifactId>
             <version>0.0.1-SNAPSHOT</version>
-            <scope>compile</scope>
+            <scope>provided</scope>
         </dependency>
 
         <dependency>
