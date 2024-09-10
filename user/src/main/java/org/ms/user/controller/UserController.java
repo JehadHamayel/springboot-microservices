@@ -20,6 +20,15 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 import java.util.stream.Collectors;
 
+/**
+ * Controller for handling user-related HTTP requests.
+ * <p>
+ *     This controller provides endpoints to manage users, including retrieving, creating,
+ *     and deleting users. It uses {@link UserService} for business logic and {@link KafkaTemplate}
+ *     for sending messages to Kafka topics.
+ * </p>
+ *
+ */
 @RestController
 @RequestMapping("/users")
 @RequiredArgsConstructor
@@ -30,6 +39,15 @@ public class UserController {
     private final KafkaTemplate<String, String> kafkaTemplate;
     private final UserMapper userMapper;
 
+    /**
+     * Retrieves all users.
+     * <p>
+     *     This endpoint returns a list of all users. The users are mapped from
+     *     {@link UserEntity} to {@link UserDto} for the response.
+     * </p>
+     *
+     * @return a {@link List} of {@link UserDto} representing all users
+     */
     @ApiResponse(responseCode = "200", description = "Get all users",
             content = { @Content(mediaType = "application/json",
                     schema = @Schema(implementation = UserEntity.class)) })
@@ -45,6 +63,17 @@ public class UserController {
         return userDtos;
     }
 
+    /**
+     * Creates a new user.
+     * <p>
+     *     This endpoint creates a new user based on the provided {@link UserDto}.
+     *     If the user's name is less than 4 characters, it returns a bad request response.
+     *     Otherwise, it creates the user and returns the created user in the response.
+     * </p>
+     *
+     * @param user the {@link UserDto} to be created
+     * @return a {@link ResponseEntity} containing the created {@link UserDto}
+     */
     @ApiResponses({
             @ApiResponse(responseCode = "200", description = "User created",
                     content = { @Content(mediaType = "application/json",
@@ -71,6 +100,16 @@ public class UserController {
         return ResponseEntity.ok(userMapper.mapTo(newUser));
     }
 
+    /**
+     * Retrieves a user by ID.
+     * <p>
+     *     This endpoint returns the user with the specified ID. If the user is not found,
+     *     it returns a not found response.
+     * </p>
+     *
+     * @param id the unique identifier of the user to retrieve
+     * @return a {@link ResponseEntity} containing the {@link UserDto} if found, or a not found response
+     */
     @ApiResponses({
             @ApiResponse(responseCode = "200", description = "Get user by id",
                     content = { @Content(mediaType = "application/json",
@@ -95,6 +134,17 @@ public class UserController {
         return ResponseEntity.ok(userMapper.mapTo(user));
     }
 
+    /**
+     * Deletes a user by ID.
+     * <p>
+     *     This endpoint deletes the user with the specified ID. It also sends a message to a Kafka topic
+     *     to notify other services about the deletion to delete related posts. If the user is not found,
+     *     it returns a not found response.
+     * </p>
+     *
+     * @param id the unique identifier of the user to delete
+     * @return a {@link ResponseEntity} with no content if successfully deleted, or a not found response
+     */
     @ApiResponses({
             @ApiResponse(responseCode = "204", description = "User Deleted",
                     content = { @Content(mediaType = "application/json",

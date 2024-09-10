@@ -19,6 +19,13 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 import java.util.stream.Collectors;
 
+/**
+ * REST controller for managing Post-related endpoints.
+ * <p>
+ *     This controller exposes several endpoints related to post management, including fetching posts,
+ *     creating posts, and retrieving posts by ID or by user ID and post ID.
+ * </p>
+ */
 @RestController
 @RequiredArgsConstructor
 @Slf4j
@@ -28,12 +35,16 @@ public class PostController {
     private final UserService userService;
     private final PostMapper postMapper;
 
+    /**
+     * Retrieves all posts.
+     *
+     * @return a {@link List} of {@link PostDto} representing all posts.
+     */
     @ApiResponse(responseCode = "200", description = "Get all posts",
-            content = { @Content(mediaType = "application/json",
-                    schema = @Schema(implementation = PostEntity.class)) })
+            content = {@Content(mediaType = "application/json",
+                    schema = @Schema(implementation = PostEntity.class))})
     @Tag(name = "Get", description = "Get methods of APIs")
-    @Operation(summary = "Get all posts",
-            description = "Get all posts")
+    @Operation(summary = "Get all posts", description = "Get all posts")
     @GetMapping("/posts")
     public List<PostDto> getPosts() {
         log.info("Fetching all posts");
@@ -41,15 +52,25 @@ public class PostController {
         return posts.stream().map(postMapper::mapTo).collect(Collectors.toList());
     }
 
+    /**
+     * Creates a new post.
+     * <p>
+     *     The post body must have a length between 10 and 1000 characters, and the user
+     *     with the specified user ID must exist.
+     * </p>
+     *
+     * @param post the {@link PostDto} representing the post to be created.
+     * @return a {@link ResponseEntity} containing the created post, or a bad request if the
+     * body length is invalid or the user does not exist.
+     */
     @ApiResponses({
             @ApiResponse(responseCode = "200", description = "Post created",
-                    content = { @Content(mediaType = "application/json",
-                            schema = @Schema(implementation = PostEntity.class)) }),
+                    content = {@Content(mediaType = "application/json",
+                            schema = @Schema(implementation = PostEntity.class))}),
             @ApiResponse(responseCode = "400", description = "Invalid input",
                     content = @Content)})
     @Tag(name = "Post", description = "Post methods of APIs")
-    @Operation(summary = "Create a post",
-            description = "Create a new post")
+    @Operation(summary = "Create a post", description = "Create a new post")
     @PostMapping("/posts")
     public ResponseEntity<PostDto> createPost(@RequestBody PostDto post) {
         log.info("Creating post with userId: {} and body length: {}", post.getUserId(), post.getBody().length());
@@ -67,15 +88,20 @@ public class PostController {
         return ResponseEntity.ok(postMapper.mapTo(newPost));
     }
 
+    /**
+     * Retrieves a post by its ID.
+     *
+     * @param id the ID of the post to be retrieved.
+     * @return a {@link ResponseEntity} containing the post if found, or not found response if not.
+     */
     @ApiResponses({
             @ApiResponse(responseCode = "200", description = "Get post by id",
-                    content = { @Content(mediaType = "application/json",
-                            schema = @Schema(implementation = PostEntity.class)) }),
+                    content = {@Content(mediaType = "application/json",
+                            schema = @Schema(implementation = PostEntity.class))}),
             @ApiResponse(responseCode = "404", description = "Post not found",
                     content = @Content)})
     @Tag(name = "Get", description = "Get methods of APIs")
-    @Operation(summary = "Get post by id",
-            description = "Get post by id")
+    @Operation(summary = "Get post by id", description = "Get post by id")
     @GetMapping("/posts/{id}")
     public ResponseEntity<PostDto> getPost(@PathVariable Long id) {
         log.info("Fetching post with id: {}", id);
@@ -87,15 +113,21 @@ public class PostController {
         return ResponseEntity.ok(postMapper.mapTo(post));
     }
 
+    /**
+     * Retrieves a post by both the user ID and post ID.
+     *
+     * @param userId the ID of the user who owns the post.
+     * @param postId the ID of the post.
+     * @return a {@link ResponseEntity} containing the post if found, or not found response if not.
+     */
     @ApiResponses({
             @ApiResponse(responseCode = "200", description = "Get post by user id and post id",
-                    content = { @Content(mediaType = "application/json",
-                            schema = @Schema(implementation = PostEntity.class)) }),
+                    content = {@Content(mediaType = "application/json",
+                            schema = @Schema(implementation = PostEntity.class))}),
             @ApiResponse(responseCode = "404", description = "Post not found",
                     content = @Content)})
     @Tag(name = "Get", description = "Get methods of APIs")
-    @Operation(summary = "Get post by user id and post id",
-            description = "Get post by user id and post id")
+    @Operation(summary = "Get post by user id and post id", description = "Get post by user id and post id")
     @GetMapping("/users/{userId}/posts/{postId}")
     public ResponseEntity<PostDto> getPostByUserIdAndPostId(@PathVariable Long userId, @PathVariable Long postId) {
         log.info("Fetching post with userId: {} and postId: {}", userId, postId);
