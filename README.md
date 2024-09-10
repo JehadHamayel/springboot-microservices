@@ -37,7 +37,6 @@ This project demonstrates a **Spring Boot** microservices architecture using **A
 ### 1. Clone the repository:
 ```bash
 git clone https://github.com/JehadHamayel/springboot-microservices
-cd spring-boot-microservices
 ```
 
 ### 2. Install Ubuntu WSL2:
