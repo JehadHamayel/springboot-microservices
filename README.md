@@ -52,8 +52,7 @@ Follow these steps to get Kafka running on Windows:
 2. **Start Zookeeper**:
    Kafka relies on Zookeeper. Open a command prompt, navigate to the Kafka directory, and run:
    ```bash
-   cd C:\kafka
-   .\bin\windows\zookeeper-server-start.bat .\config\zookeeper.properties
+   bin/zookeeper-server-start.sh config/zookeeper.properties
    ```
 3. **Start Kafka Server**:
    ```bash
